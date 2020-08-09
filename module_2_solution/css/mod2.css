@@ -9,7 +9,7 @@ body{
 
 section{
     background-color: #afafaf;
-    border: solid black 3px;
+    border: solid black 1px;
     width: 93%;
     margin: 3.33%;
     min-height: 180px;
@@ -24,8 +24,8 @@ h2{
     text-align: center;
     font-size: 1.25em;
     padding: 5px 15px;
-    border-bottom: solid black 3px;
-    border-left: solid black 3px;
+    border-bottom: solid black 1px;
+    border-left: solid black 1px;
     display: inline-block;
     float: right;
 }
