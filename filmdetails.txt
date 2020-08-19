@@ -1,0 +1,144 @@
+import requests
+import json
+
+def get_movie_data(title):
+    baseurl = "http://www.omdbapi.com/?apikey=e6dee1f3"
+    params_dic = {}
+    params_dic['t'] = title
+    params_dic['r'] = "json"
+    om_resp = requests.get(baseurl, params = params_dic)
+    data = om_resp.json()
+    for d in data['Ratings']:
+        if d['Source'] == "Rotten Tomatoes":
+            rat = int((d['Value'])[:-1])
+    actors = [d.strip() for d in data['Actors'].split(',')]
+    di = [d.strip() for d in data['Director'].split(',')]
+    return (di, actors, rat)
+    
+get_movie_data('Titanic')
+    
+for film in topfilms[:50]:
+    extra = get_movie_data(film['Title'])
+    print(extra)
+    film['Director'] = extra[0]
+    film['Actors'] = extra[1]
+    film['Rating'] = extra[2]
+
+
+
+
+
+[{'Title': 'Avengers: Endgame',
+  'Gross': 2797800564,
+  'Year': 2019,
+  'Director': ['Anthony Russo', 'Joe Russo'],
+  'Actors': ['Robert Downey Jr.',
+   'Chris Evans',
+   'Mark Ruffalo',
+   'Chris Hemsworth'],
+  'Rating': 94},
+ {'Title': 'Avatar',
+  'Gross': 2790439000,
+  'Year': 2009,
+  'Director': ['James Cameron'],
+  'Actors': ['Sam Worthington',
+   'Zoe Saldana',
+   'Sigourney Weaver',
+   'Stephen Lang'],
+  'Rating': 82},
+ {'Title': 'Titanic',
+  'Gross': 2195169647,
+  'Year': 1997,
+  'Director': ['James Cameron'],
+  'Actors': ['Leonardo DiCaprio', 'Kate Winslet', 'Billy Zane', 'Kathy Bates'],
+  'Rating': 89},
+ {'Title': 'Star Wars: Episode VII - The Force Awakens',
+  'Gross': 2068223624,
+  'Year': 2015,
+  'Director': ['J.J. Abrams'],
+  'Actors': ['Harrison Ford', 'Mark Hamill', 'Carrie Fisher', 'Adam Driver'],
+  'Rating': 93},
+ {'Title': 'Avengers: Infinity War',
+  'Gross': 2048359754,
+  'Year': 2018,
+  'Director': ['Anthony Russo', 'Joe Russo'],
+  'Actors': ['Robert Downey Jr.',
+   'Chris Hemsworth',
+   'Mark Ruffalo',
+   'Chris Evans'],
+  'Rating': 85},
+ {'Title': 'The Lion King',
+  'Gross': 1792801036,
+  'Year': 2019,
+  'Director': ['Roger Allers', 'Rob Minkoff'],
+  'Actors': ['Rowan Atkinson',
+   'Matthew Broderick',
+   'Niketa Calame-Harris',
+   'Jim Cummings'],
+  'Rating': 93},
+ {'Title': 'Jurassic World',
+  'Gross': 1670400637,
+  'Year': 2015,
+  'Director': ['Colin Trevorrow'],
+  'Actors': ['Chris Pratt',
+   'Bryce Dallas Howard',
+   'Irrfan Khan',
+   "Vincent D'Onofrio"],
+  'Rating': 70},
+ {'Title': 'The Avengers',
+  'Gross': 1518812988,
+  'Year': 2012,
+  'Director': ['Joss Whedon'],
+  'Actors': ['Robert Downey Jr.',
+   'Chris Evans',
+   'Mark Ruffalo',
+   'Chris Hemsworth'],
+  'Rating': 92},
+ {'Title': 'Furious 7',
+  'Gross': 1515048151,
+  'Year': 2015,
+  'Director': ['James Wan'],
+  'Actors': ['Vin Diesel',
+   'Paul Walker',
+   'Jason Statham',
+   'Michelle Rodriguez'],
+  'Rating': 82},
+ {'Title': 'Frozen II',
+  'Gross': 1450026933,
+  'Year': 2019,
+  'Director': ['Chris Buck', 'Jennifer Lee'],
+  'Actors': ['Kristen Bell', 'Idina Menzel', 'Josh Gad', 'Jonathan Groff'],
+  'Rating': 77},
+ {'Title': 'Avengers: Age of Ultron',
+  'Gross': 1402805868,
+  'Year': 2015,
+  'Director': ['Joss Whedon'],
+  'Actors': ['Robert Downey Jr.',
+   'Chris Hemsworth',
+   'Mark Ruffalo',
+   'Chris Evans'],
+  'Rating': 76},
+ {'Title': 'Harry Potter and the Deathly Hallows: Part 2',
+  'Gross': 1391423446,
+  'Year': 2010,
+  'Director': ['David Yates'],
+  'Actors': ['Ralph Fiennes',
+   'Michael Gambon',
+   'Alan Rickman',
+   'Daniel Radcliffe'],
+  'Rating': 96},
+ {'Title': 'Black Panther',
+  'Gross': 1347280161,
+  'Year': 2018,
+  'Director': ['Ryan Coogler'],
+  'Actors': ['Chadwick Boseman',
+   'Michael B. Jordan',
+   "Lupita Nyong'o",
+   'Danai Gurira'],
+  'Rating': 96},
+ {'Title': 'Star Wars: Episode VIII - The Last Jedi',
+  'Gross': 1332539889,
+  'Year': 2017,
+  'Director': ['Rian Johnson'],
+  'Actors': ['Mark Hamill', 'Carrie Fisher', 'Adam Driver', 'Daisy Ridley'],
+  'Rating': 90},
